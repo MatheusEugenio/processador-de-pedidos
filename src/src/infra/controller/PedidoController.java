@@ -16,7 +16,7 @@ public class PedidoController {
 
     public static void removerItemProduto(ItemPedido item, Pedido pedido) {
         try{
-            pedido.removerItemProduto(item);
+            pedido.removerItem(item);
             System.out.println("Pedido removido com sucesso!");
         }catch (Exception e){
             System.out.println("Erro: "+ e.getMessage());
