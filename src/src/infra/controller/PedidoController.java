@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public class PedidoController {
 
-    public static void adicionarProduto(ItemPedido item, List<ItemPedido> itensNoCarrinho) {
+    public static void adicionarItemProduto(ItemPedido item, List<ItemPedido> itensNoCarrinho) {
         if (item == null){
             throw new IllegalArgumentException("produto é nulo, inválido!");
         }
@@ -17,7 +17,7 @@ public class PedidoController {
         itensNoCarrinho.add(item);
     }
 
-    public static void removerProduto(ItemPedido item, List<ItemPedido> itensNoCarrinho){
+    public static void removerItemProduto(ItemPedido item, List<ItemPedido> itensNoCarrinho){
         if (item == null){
             throw new IllegalArgumentException("produto ou cliente ou ambos são nulos!");
         }
@@ -29,7 +29,7 @@ public class PedidoController {
         );
     }
 
-    public static void editarProduto(ItemPedido item, List<ItemPedido> itensNoCarrinho){// tem que ser mais completo
+    public static void editarItemProduto(ItemPedido item, List<ItemPedido> itensNoCarrinho, int quant){// tem que ser mais completo
         if (item == null){
             throw new IllegalArgumentException("produto ou cliente ou ambos são nulos!");
         }
@@ -42,6 +42,6 @@ public class PedidoController {
         Optional<ItemPedido> itemEncontradoOP = BuscaDeItemEmPedido.buscaItemEmPedido(item, itensNoCarrinho);
         ItemPedido itemEncontrado = itemEncontradoOP.orElseThrow(() -> new NoSuchElementException("Erro: Item não encontrado na busca detalhada."));
 
-        //a edição do pedido..
+        itemEncontrado.setQuantidadeDoProduto(quant);
     }
 }

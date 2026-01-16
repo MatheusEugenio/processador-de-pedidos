@@ -12,6 +12,10 @@ public class ItemPedido {
         if(precoUnitario > 0){this.precoUnitario = precoUnitario;}
     }
 
+    public void setQuantidadeDoProduto(int quantidadeDoProduto) {
+        this.quantidadeDoProduto = quantidadeDoProduto;
+    }
+
     public Produto getProduto() {return produto;}
     public int getQuantidadeDoProduto() {return quantidadeDoProduto;}
     public double getPrecoUnitario() {return precoUnitario;}
