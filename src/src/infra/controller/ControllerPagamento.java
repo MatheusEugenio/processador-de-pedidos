@@ -7,18 +7,22 @@ import infra.services.modelPagamento.PagamentoPix;
 
 public class ControllerPagamento {
 
-    public static IPagamento meioDePagamento(String tag){
-        if (tag.equalsIgnoreCase("pix")){
-            return new PagamentoPix();
+    public static IPagamento meioDePagamento(){
 
-        }else if (tag.equalsIgnoreCase("boleto")){
-            return new PagamentoBoleto();
-
-        }else if (tag.equalsIgnoreCase("cartão")){
-            return new PagamentoCartao();
-
-        }else {
-
-        }
     }
+
+//    public static IPagamento meioDePagamento(String tag){
+//        if (tag.equalsIgnoreCase("pix")){
+//            return new PagamentoPix();
+//
+//        }else if (tag.equalsIgnoreCase("boleto")){
+//            return new PagamentoBoleto();
+//
+//        }else if (tag.equalsIgnoreCase("cartão")){
+//            return new PagamentoCartao();
+//
+//        }else {
+//
+//        }
+//    }
 }
