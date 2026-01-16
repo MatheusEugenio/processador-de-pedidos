@@ -1,4 +1,4 @@
-package core.model.dateformatter;
+package core.usecases;
 
 import java.time.format.DateTimeFormatter;
 

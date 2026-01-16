@@ -1,6 +1,6 @@
 package core.model;
 
-import core.model.dateformatter.Dateformatter;
+import core.usecases.Dateformatter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

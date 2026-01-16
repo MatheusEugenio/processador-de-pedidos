@@ -6,8 +6,8 @@ public abstract class Produto {
     private String descricao;
     private double precoAtual;
     private int quantidadeEstoque;
+    private int ID;
     private boolean disponivel = false;
-
 
     public Produto(String nome, String descricao, double preco, int quant) {
         this.nome = nome;
@@ -21,7 +21,6 @@ public abstract class Produto {
     public String getDescricao() {return descricao;}
     public double getPrecoAtual() {return precoAtual;}
     public boolean isDisponivel() {return disponivel;}
-
     public void setNome(String nome) {this.nome = nome;}
     public void setPrecoAtual(double precoAtual) {this.precoAtual = precoAtual;}
     public void setQuantidadeEstoque(int quantidadeEstoque) {this.quantidadeEstoque = quantidadeEstoque;}
