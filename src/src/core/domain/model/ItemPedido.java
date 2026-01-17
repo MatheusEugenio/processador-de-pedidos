@@ -1,6 +1,4 @@
-package core.model;
-
-import core.model.tiposDeProduto.Produto;
+package core.domain.model;
 
 public class ItemPedido {
 

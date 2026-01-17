@@ -1,7 +1,6 @@
-package core.model;
+package core.domain.model;
 
-import core.model.tiposDeProduto.Produto;
-import core.usecases.Dateformatter;
+import infra.util.Dateformatter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

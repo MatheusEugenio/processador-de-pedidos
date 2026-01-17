@@ -1,4 +1,4 @@
-package infra.services;
+package core.domain.services;
 
 public class PedidoService {
 }

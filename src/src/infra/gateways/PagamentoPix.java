@@ -1,4 +1,6 @@
-package infra.services;
+package infra.gateways;
+
+import core.domain.interfaces.IPagamento;
 
 public class PagamentoPix implements IPagamento {
 

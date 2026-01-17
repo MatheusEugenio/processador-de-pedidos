@@ -1,6 +1,4 @@
-package core.model;
-
-import core.model.tiposDeProduto.ProdutoDigital;
+package core.domain.model;
 
 public class Ebook extends ProdutoDigital {
 

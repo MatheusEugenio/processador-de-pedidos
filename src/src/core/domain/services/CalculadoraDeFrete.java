@@ -1,11 +1,11 @@
-package infra.services;
+package core.domain.services;
 
-import core.interfaces.ITransportavel;
-import core.model.ItemPedido;
+import core.domain.interfaces.ITransportavel;
+import core.domain.model.ItemPedido;
 
 import java.util.List;
 
-public class Transportavel {
+public class CalculadoraDeFrete {
 
     public double calcularFreteTotal(List<ItemPedido> itens){
         if (itens.isEmpty()){

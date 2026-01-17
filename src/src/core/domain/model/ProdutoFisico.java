@@ -1,7 +1,7 @@
-package core.model.tiposDeProduto;
+package core.domain.model;
 
-import core.interfaces.IRegradePreco;
-import core.interfaces.ITransportavel;
+import core.domain.interfaces.IRegradePreco;
+import core.domain.interfaces.ITransportavel;
 
 public class ProdutoFisico extends Produto implements ITransportavel {
     private double peso;

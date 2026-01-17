@@ -1,7 +1,7 @@
-package core.model;
+package core.domain.model;
 
-import core.usecases.BuscaDeItemEmPedido;
-import infra.services.IPagamento;
+import core.domain.usecases.BuscaDeItemEmPedido;
+import core.domain.interfaces.IPagamento;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
-package core.usecases;
+package core.domain.usecases;
 
-import core.model.ItemPedido;
+import core.domain.model.ItemPedido;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,6 +1,4 @@
-package core.model;
-
-import core.model.tiposDeProduto.ProdutoFisico;
+package core.domain.model;
 
 public class Livro extends ProdutoFisico {
 

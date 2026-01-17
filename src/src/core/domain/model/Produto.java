@@ -1,6 +1,6 @@
-package core.model.tiposDeProduto;
+package core.domain.model;
 
-import core.interfaces.IRegradePreco;
+import core.domain.interfaces.IRegradePreco;
 
 public abstract class Produto {
 

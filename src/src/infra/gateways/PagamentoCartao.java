@@ -1,5 +1,7 @@
-package infra.services;
+package infra.gateways;
 
+
+import core.domain.interfaces.IPagamento;
 
 public class PagamentoCartao implements IPagamento {
 

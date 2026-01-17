@@ -1,9 +1,9 @@
 package infra.controller;
 
-import core.model.Pedido;
-import infra.services.IPagamento;
-import infra.services.PagamentoCartao;
-import infra.services.PagamentoPix;
+import core.domain.model.Pedido;
+import core.domain.interfaces.IPagamento;
+import infra.gateways.PagamentoCartao;
+import infra.gateways.PagamentoPix;
 
 public class PagamentoController {
 

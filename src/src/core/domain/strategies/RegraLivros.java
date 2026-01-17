@@ -1,6 +1,6 @@
-package core.regrasDeNegocio;
+package core.domain.strategies;
 
-import core.interfaces.IRegradePreco;
+import core.domain.interfaces.IRegradePreco;
 
 public class RegraLivros implements IRegradePreco {
     @Override

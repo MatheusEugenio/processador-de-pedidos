@@ -1,4 +1,4 @@
-package core.usecases;
+package infra.util;
 
 import java.time.format.DateTimeFormatter;
 

@@ -1,4 +1,4 @@
-package infra.services;
+package core.domain.interfaces;
 
 public interface IPagamento {
     boolean processarPagamento(double valor);
