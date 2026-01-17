@@ -1,9 +1,6 @@
 package infra.controller;
 
-import core.interfaces.IPagamento;
-import infra.services.modelPagamento.PagamentoBoleto;
-import infra.services.modelPagamento.PagamentoCartao;
-import infra.services.modelPagamento.PagamentoPix;
+import infra.services.IPagamento;
 
 public class ControllerPagamento {
 

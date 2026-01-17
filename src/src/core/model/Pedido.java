@@ -1,6 +1,7 @@
 package core.model;
 
 import core.usecases.BuscaDeItemEmPedido;
+import infra.services.IPagamento;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,11 +14,13 @@ public class Pedido {
         private Cliente cliente;
         private LocalDate dataDeCompra;
         private List<ItemPedido> itensNoCarrinho;
+        private boolean estaPago;
 
         public Pedido(Cliente comprador){
             this.cliente = comprador;
             this.itensNoCarrinho = new ArrayList<>();
             this.dataDeCompra = LocalDate.now();
+            this.estaPago = false;
         }
 
         public void envioTransportadora(){
@@ -67,6 +70,26 @@ public class Pedido {
             }
 
             return precoTotal;
+        }
+
+        public void pagarPedido(IPagamento tipoPagamento){
+            if (this.itensNoCarrinho.isEmpty()){
+                throw new IllegalStateException("Nenhum item encontrado na lista!");
+            }
+
+            if (estaPago){throw new IllegalStateException("Pedido já está pago!");}
+
+            double valorTotalPagar = calcularTotal();
+
+            boolean pago = tipoPagamento.processarPagamento(valorTotalPagar);
+
+            if (pago){
+                this.estaPago = true;
+                System.out.println("Pedido pago com sucesso!");
+                //enviar comando de email
+            }else {
+                throw new RuntimeException("Erro ao pagar!");
+            }
         }
 
         public Cliente getCliente() {return cliente;}
