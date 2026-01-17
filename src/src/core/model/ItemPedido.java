@@ -1,5 +1,7 @@
 package core.model;
 
+import core.model.tiposDeProduto.Produto;
+
 public class ItemPedido {
 
     private Produto produto;

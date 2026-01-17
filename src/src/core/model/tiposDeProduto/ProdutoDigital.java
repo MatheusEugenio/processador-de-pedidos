@@ -1,7 +1,6 @@
 package core.model.tiposDeProduto;
 
 import core.interfaces.IRegradePreco;
-import core.model.Produto;
 
 public class ProdutoDigital extends Produto {
 

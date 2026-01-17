@@ -1,5 +1,6 @@
 package core.model;
 
+import core.model.tiposDeProduto.Produto;
 import core.usecases.Dateformatter;
 
 import java.time.LocalDate;

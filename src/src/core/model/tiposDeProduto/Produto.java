@@ -1,4 +1,4 @@
-package core.model;
+package core.model.tiposDeProduto;
 
 import core.interfaces.IRegradePreco;
 
