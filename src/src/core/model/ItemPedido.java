@@ -3,20 +3,24 @@ package core.model;
 public class ItemPedido {
 
     private Produto produto;
-    private int quantidadeDoProduto;
+    private int quantidade;
     private double precoUnitario;
 
-    public ItemPedido(Produto produto, int quantidadeDoProduto, double precoUnitario) {
-        if (produto != null){this.produto = produto;}
-        if (quantidadeDoProduto > 0 ){this.quantidadeDoProduto = quantidadeDoProduto;}
-        if(precoUnitario > 0){this.precoUnitario = precoUnitario;}
+    public ItemPedido(Produto produto, int quantidade) {
+        if (produto == null){
+            throw new IllegalArgumentException("produto nulo!");
+        }
+
+        this.produto = produto;
+        this.quantidade = quantidade;
+        this.precoUnitario = produto.getPrecoFinal();
     }
 
-    public void setQuantidadeDoProduto(int quantidadeDoProduto) {
-        this.quantidadeDoProduto = quantidadeDoProduto;
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 
     public Produto getProduto() {return produto;}
-    public int getQuantidadeDoProduto() {return quantidadeDoProduto;}
+    public int getQuantidade() {return quantidade;}
     public double getPrecoUnitario() {return precoUnitario;}
 }

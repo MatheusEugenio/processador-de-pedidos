@@ -2,35 +2,36 @@ package core.model;
 
 import core.interfaces.IRegradePreco;
 
-public abstract class Produto implements IRegradePreco {
+public abstract class Produto {
 
-    private String nome;
-    private String descricao;
-    private String tipoDoProduto;
-    private double precoInicial;
-    private int quantidadeInicialDeEstoque;
-    private int ID;
-    private boolean disponivel = false;
+    protected int ID;
+    protected String nome;
+    protected String descricao;
+    protected double precoBase;
+    protected int quantidadeEstoque;
+    protected boolean disponivel;
+    protected IRegradePreco regraDePreco;
 
-    public Produto(String nome, String tipo, String descricao, double preco, int quant) {
+    public Produto(String nome, String descricao, double precoBase, int quant, IRegradePreco regraDePreco) {
         this.nome = nome;
-        this.tipoDoProduto = tipo;
         this.descricao = descricao;
-        this.precoInicial = preco;
-        this.quantidadeInicialDeEstoque = quant;
-        this.disponivel = true;
+        this.precoBase = precoBase;
+        this.quantidadeEstoque = quant;
+        this.regraDePreco = regraDePreco;
+
+        this.disponivel = this.quantidadeEstoque > 0;
+    }
+
+    public double getPrecoFinal() {
+        return regraDePreco.calcularPrecoFinal(this.precoBase);
     }
 
     public int getID() {return ID;}
-    public String getTipoDoProduto() {return tipoDoProduto;}
     public String getNome() {return nome;}
     public String getDescricao() {return descricao;}
-    public double getPrecoInicial() {return precoInicial;}
+    public double getPrecoBase() {return precoBase;}
     public boolean isDisponivel() {return disponivel;}
-    public void setNome(String nome) {this.nome = nome;}
-    public void setPrecoInicial(double precoInicial) {this.precoInicial = precoInicial;}
-    public void setQuantidadeInicialDeEstoque(int quantidadeInicialDeEstoque) {this.quantidadeInicialDeEstoque = quantidadeInicialDeEstoque;}
-    public int getQuantidadeInicialDeEstoque() {return quantidadeInicialDeEstoque;}
-    public void setDescricao(String descricao) {this.descricao = descricao;}
+    public void setQuantidadeEstoque(int quantidadeEstoque) {this.quantidadeEstoque = quantidadeEstoque;}
+    public int getQuantidadeEstoque() {return quantidadeEstoque;}
     public void setDisponivel(boolean disponivel) {this.disponivel = disponivel;}
 }

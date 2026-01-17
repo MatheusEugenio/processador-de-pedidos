@@ -60,17 +60,14 @@ public class Pedido {
             Optional<ItemPedido> itemEncontradoOP = BuscaDeItemEmPedido.buscaItemEmPedido(item, itensNoCarrinho);
             ItemPedido itemEncontrado = itemEncontradoOP.orElseThrow(() -> new NoSuchElementException("Erro: Item não encontrado na busca detalhada."));
 
-            itemEncontrado.setQuantidadeDoProduto(quant);
+            itemEncontrado.setQuantidade(quant);
         }
 
         public double calcularTotal(){
-            double precoTotal = 0;
-            for (ItemPedido item : itensNoCarrinho){
-                precoTotal += (item.getQuantidadeDoProduto() * item.getPrecoUnitario());
-            }
+            return itensNoCarrinho.stream()
+                    .mapToDouble(item -> item.getQuantidade() * item.getPrecoUnitario())
+                    .sum();
 
-            //lógica de desconto
-            return precoTotal;
         }
 
         public void pagarPedido(IPagamento tipoPagamento){
