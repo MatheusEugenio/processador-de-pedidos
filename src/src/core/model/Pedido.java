@@ -69,6 +69,7 @@ public class Pedido {
                 precoTotal += (item.getQuantidadeDoProduto() * item.getPrecoUnitario());
             }
 
+            //lógica de desconto
             return precoTotal;
         }
 
