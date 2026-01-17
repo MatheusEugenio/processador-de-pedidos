@@ -5,7 +5,7 @@ import infra.services.IPagamento;
 import infra.services.PagamentoCartao;
 import infra.services.PagamentoPix;
 
-public class ControllerPagamento {
+public class PagamentoController {
 
     public static void finalizarPedido(Pedido pedido, String metodoEscolhido) {
         try {
