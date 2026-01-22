@@ -1,7 +1,10 @@
-package core.domain.model;
+package core.domain.services;
 
+import core.domain.model.Cliente;
+import core.domain.model.ItemPedido;
 import core.domain.usecases.BuscaDeItemEmPedido;
 import core.domain.interfaces.IPagamento;
+import core.domain.usecases.CalculadoraDeFrete;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,8 +26,12 @@ public class Pedido {
             this.estaPago = false;
         }
 
-        public void envioTransportadora(){
+        private double calcularValorTotalDoPedido(){
+            double valorTotalDosItens =  itensNoCarrinho.stream()
+                    .mapToDouble(item -> item.getQuantidade() * item.getPrecoUnitario())
+                    .sum();
 
+            return valorTotalDosItens + CalculadoraDeFrete.calcularFreteTotal(this.itensNoCarrinho);
         }
 
         public void adicionarItem(ItemPedido item) {
@@ -63,12 +70,6 @@ public class Pedido {
             itemEncontrado.setQuantidade(quant);
         }
 
-        public double calcularValorTotal(){
-            return itensNoCarrinho.stream()
-                    .mapToDouble(item -> item.getQuantidade() * item.getPrecoUnitario())
-                    .sum();
-        }
-
         public void pagarPedido(IPagamento tipoPagamento){
             if (this.itensNoCarrinho.isEmpty()){
                 throw new IllegalStateException("Nenhum item encontrado na lista!");
@@ -76,7 +77,7 @@ public class Pedido {
 
             if (estaPago){throw new IllegalStateException("Pedido já está pago!");}
 
-            boolean pago = tipoPagamento.processarPagamento(calcularValorTotal());
+            boolean pago = tipoPagamento.processarPagamento(calcularValorTotalDoPedido());
 
             if (pago){
                 this.estaPago = true;
@@ -87,7 +88,4 @@ public class Pedido {
             }
         }
 
-        public Cliente getCliente() {return cliente;}
-        public LocalDate getDataDeCompra() {return dataDeCompra;}
-        public List<ItemPedido> getItensNoCarrinho() {return itensNoCarrinho;}
 }
