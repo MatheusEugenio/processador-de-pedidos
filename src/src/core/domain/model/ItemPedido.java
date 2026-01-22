@@ -19,7 +19,6 @@ public class ItemPedido {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
-
     public Produto getProduto() {return produto;}
     public int getQuantidade() {return quantidade;}
     public double getPrecoUnitario() {return precoUnitario;}

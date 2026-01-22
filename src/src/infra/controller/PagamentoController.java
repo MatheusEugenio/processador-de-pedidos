@@ -1,6 +1,6 @@
 package infra.controller;
 
-import core.domain.model.Pedido;
+import core.domain.services.Pedido;
 import core.domain.interfaces.IPagamento;
 import infra.gateways.PagamentoCartao;
 import infra.gateways.PagamentoPix;
