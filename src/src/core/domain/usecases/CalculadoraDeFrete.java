@@ -1,4 +1,4 @@
-package core.domain.services;
+package core.domain.usecases;
 
 import core.domain.interfaces.ITransportavel;
 import core.domain.model.ItemPedido;
