@@ -9,7 +9,7 @@ import infra.util.MetodosDePagamentos;
 public class PagamentoController {
 
     /// NA MAIN/APLICAÇÃO LEMBRAR DE FORMATAR A ENTRADA DO "metodoEscolhido" PARA .TRIM().TOUPPERCASE()
-    public static void pagamentoDoPedido(Pedido pedido, MetodosDePagamentos metodoEscolhido) throws IllegalArgumentException{
+    public static void pagarDoPedido(Pedido pedido, MetodosDePagamentos metodoEscolhido) throws IllegalArgumentException{
             IPagamento estrategiaDePagamento;
 
             switch (metodoEscolhido) {
