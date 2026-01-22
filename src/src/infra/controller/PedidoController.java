@@ -2,36 +2,56 @@ package infra.controller;
 
 import core.domain.model.ItemPedido;
 import core.domain.services.Pedido;
+import infra.util.StatusDoPedido;
 
 public class PedidoController {
 
-    /// TALVEZ TENHA QUE COLOCAR UMA LÓGICA DE VERIFICAÇÃO DE EXISTÊNCIA DO PEDIDO, ANTES DE USAR ESSES MÉTODOS
-    /// O QUE IMPACTA DIRETAMENTE NA ASSINATURA DESSES MÉTODOS
-    public static void adicionarItemProdutoAoPedido(ItemPedido item, Pedido pedido) {
+    public static void adicionarItemProdutoAoPedido(ItemPedido item, Pedido pedido) throws Exception {
         try{
+            if (pedido==null){
+                throw new NullPointerException("Erro ao adicionar produto: o pedido ainda não existe ou é nulo!");
+            }
+
             pedido.adicionarItem(item);
             System.out.println("Pedido adicionado com sucesso!");
         }catch (Exception e){
-            System.out.println("Erro: "+ e.getMessage());
+            throw new Exception(e.getMessage());
         }
     }
 
-    public static void removerItemProdutoDoPedido(ItemPedido item, Pedido pedido) {
+    public static void removerItemProdutoDoPedido(ItemPedido item, Pedido pedido) throws Exception {
         try{
+            if (pedido==null){
+                throw new NullPointerException("Erro ao remover produto: o pedido ainda não existe ou é nulo!");
+            }
+
             pedido.removerItem(item);
             System.out.println("Pedido removido com sucesso!");
         }catch (Exception e){
-            System.out.println("Erro: "+ e.getMessage());
+            throw new Exception(e.getMessage());
         }
     }
 
-    public static void editarItemProdutoDoPedido(ItemPedido item, int quant, Pedido pedido) {
+    public static void editarItemProdutoDoPedido(ItemPedido item, int quant, Pedido pedido) throws Exception {
         try{
+            if (pedido==null){
+                throw new NullPointerException("Erro ao editar produto: o pedido ainda não existe ou é nulo!");
+            }
+
             pedido.editarItem(item, quant);
             System.out.println("Pedido editado com sucesso!");
         }catch (Exception e){
-            System.out.println("Erro: "+ e.getMessage());
+            throw new Exception (e.getMessage());
         }
+    }
+
+    public static void finalizarPedido(Pedido pedido) {
+        if (pedido == null || pedido.getItensNoCarrinho().isEmpty()){
+            throw new NullPointerException("Erro ao finalizar o pedido: Este pedido encontra-se vazio ou é nulo!");
+        }
+
+        pedido.getItensNoCarrinho().clear();
+        pedido.setStaus(StatusDoPedido.AGUARDANDO_PAGAMENTO);
     }
 
 }
