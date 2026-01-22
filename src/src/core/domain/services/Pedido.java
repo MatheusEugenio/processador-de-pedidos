@@ -15,7 +15,7 @@ import java.util.Optional;
 public class Pedido {
 
         private Cliente cliente;
-        private LocalDate dataDeCompra;
+        private LocalDate dataDeCompra; // revisar pois não está sendo usado
         private List<ItemPedido> itensNoCarrinho;
         private boolean estaPago;
 
@@ -83,9 +83,16 @@ public class Pedido {
                 this.estaPago = true;
                 System.out.println("Pedido pago com sucesso!");
                 //enviar comando de email
+                limparPedido();
             }else {
                 throw new RuntimeException("Erro ao pagar!");
             }
+        }
+
+        private void limparPedido(){
+
+            this.itensNoCarrinho.clear();
+            this.estaPago = false;
         }
 
 }
