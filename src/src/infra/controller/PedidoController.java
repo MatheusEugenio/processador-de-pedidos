@@ -5,7 +5,9 @@ import core.domain.services.Pedido;
 
 public class PedidoController {
 
-    public static void adicionarItemProduto(ItemPedido item, Pedido pedido) {
+    /// TALVEZ TENHA QUE COLOCAR UMA LÓGICA DE VERIFICAÇÃO DE EXISTÊNCIA DO PEDIDO, ANTES DE USAR ESSES MÉTODOS
+    /// O QUE IMPACTA DIRETAMENTE NA ASSINATURA DESSES MÉTODOS
+    public static void adicionarItemProdutoAoPedido(ItemPedido item, Pedido pedido) {
         try{
             pedido.adicionarItem(item);
             System.out.println("Pedido adicionado com sucesso!");
@@ -14,7 +16,7 @@ public class PedidoController {
         }
     }
 
-    public static void removerItemProduto(ItemPedido item, Pedido pedido) {
+    public static void removerItemProdutoDoPedido(ItemPedido item, Pedido pedido) {
         try{
             pedido.removerItem(item);
             System.out.println("Pedido removido com sucesso!");
@@ -23,7 +25,7 @@ public class PedidoController {
         }
     }
 
-    public static void editarItemProduto(ItemPedido item, int quant, Pedido pedido) {
+    public static void editarItemProdutoDoPedido(ItemPedido item, int quant, Pedido pedido) {
         try{
             pedido.editarItem(item, quant);
             System.out.println("Pedido editado com sucesso!");
@@ -31,4 +33,5 @@ public class PedidoController {
             System.out.println("Erro: "+ e.getMessage());
         }
     }
+
 }
