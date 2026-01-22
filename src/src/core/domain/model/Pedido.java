@@ -63,11 +63,10 @@ public class Pedido {
             itemEncontrado.setQuantidade(quant);
         }
 
-        public double calcularTotal(){
+        public double calcularValorTotal(){
             return itensNoCarrinho.stream()
                     .mapToDouble(item -> item.getQuantidade() * item.getPrecoUnitario())
                     .sum();
-
         }
 
         public void pagarPedido(IPagamento tipoPagamento){
@@ -77,9 +76,7 @@ public class Pedido {
 
             if (estaPago){throw new IllegalStateException("Pedido já está pago!");}
 
-            double valorTotalPagar = calcularTotal();
-
-            boolean pago = tipoPagamento.processarPagamento(valorTotalPagar);
+            boolean pago = tipoPagamento.processarPagamento(calcularValorTotal());
 
             if (pago){
                 this.estaPago = true;

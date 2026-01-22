@@ -10,7 +10,7 @@ public abstract class Produto {
     protected double precoBase;
     protected int quantidadeEstoque;
     protected boolean disponivel;
-    protected IRegradePreco regraDePreco;
+    protected IRegradePreco regraDePreco; //funciona como o tipo do produto
 
     public Produto(String nome, String descricao, double precoBase, int quant, IRegradePreco regraDePreco) {
         this.nome = nome;
