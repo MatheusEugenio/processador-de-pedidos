@@ -5,6 +5,7 @@ import core.domain.model.ItemPedido;
 import core.domain.usecases.BuscaDeItemEmPedido;
 import core.domain.interfaces.IPagamento;
 import core.domain.usecases.CalculadoraDeFrete;
+import infra.util.StatusDoPedido;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class Pedido {
         private LocalDate dataDeCompra; // revisar pois não está sendo usado
         private List<ItemPedido> itensNoCarrinho;
         private boolean estaPago;
+        private StatusDoPedido staus;
 
         public Pedido(Cliente comprador){
             this.cliente = comprador;
@@ -26,7 +28,12 @@ public class Pedido {
             this.estaPago = false;
         }
 
+        public StatusDoPedido getStaus() {return staus;}
+        public void setStaus(StatusDoPedido staus) {this.staus = staus;}
+        public List<ItemPedido> getItensNoCarrinho() {return this.itensNoCarrinho;}
+
         private double calcularValorTotalDoPedido(){
+
             double valorTotalDosItens =  itensNoCarrinho.stream()
                     .mapToDouble(item -> item.getQuantidade() * item.getPrecoUnitario())
                     .sum();
@@ -36,15 +43,23 @@ public class Pedido {
 
         public void adicionarItem(ItemPedido item) {
             if (item == null){
-                throw new IllegalArgumentException("produto é nulo, inválido!");
+                throw new IllegalArgumentException("Erro ao adicionar produto: o produto é nulo, inválido!");
+            }
+
+            if (!this.itensNoCarrinho.isEmpty()){
+                setStaus(StatusDoPedido.EM_ANDAMENTO);
             }
 
             itensNoCarrinho.add(item);
         }
 
-        public void removerItem(ItemPedido item){
+        public void removerItem(ItemPedido item) throws IllegalAccessException{
             if (item == null){
-                throw new IllegalArgumentException("produto ou cliente ou ambos são nulos!");
+                throw new IllegalArgumentException("Erro ao remover produto do pedido: o produto é nulo!");
+            }
+
+            if(this.itensNoCarrinho.isEmpty()){
+                throw new IllegalAccessException("Erro ao remover item do pedido: o pedido está vazia, impossível remover!");
             }
 
             itensNoCarrinho.removeIf(itemDalista ->
@@ -56,12 +71,12 @@ public class Pedido {
 
         public void editarItem(ItemPedido item, int quant){
             if (item == null){
-                throw new IllegalArgumentException("produto ou cliente ou ambos são nulos!");
+                throw new IllegalArgumentException("Erro ao editar produto: o produto é nulo!");
             }
 
             boolean estaNaLista = itensNoCarrinho.contains(item);
             if (!estaNaLista){
-                throw new NoSuchElementException("O item "+item.getProduto().getNome()+" não está presente na sua lista de pedidos!");
+                throw new NoSuchElementException("Erro ao editar produto : o item "+item.getProduto().getNome()+" não está presente na sua lista de pedidos!");
             }
 
             Optional<ItemPedido> itemEncontradoOP = BuscaDeItemEmPedido.buscaItemEmPedido(item, itensNoCarrinho);
@@ -72,10 +87,10 @@ public class Pedido {
 
         public void pagarPedido(IPagamento tipoPagamento){
             if (this.itensNoCarrinho.isEmpty()){
-                throw new IllegalStateException("Nenhum item encontrado na lista!");
+                throw new IllegalStateException("Erro no pagamento do pedido: Nenhum item encontrado na lista!");
             }
 
-            if (estaPago){throw new IllegalStateException("Pedido já está pago!");}
+            if (estaPago){throw new IllegalStateException("Atenção! O pedido já está pago!");}
 
             boolean pago = tipoPagamento.processarPagamento(calcularValorTotalDoPedido());
 
@@ -83,16 +98,8 @@ public class Pedido {
                 this.estaPago = true;
                 System.out.println("Pedido pago com sucesso!");
                 //enviar comando de email
-                limparPedido();
             }else {
                 throw new RuntimeException("Erro ao pagar!");
             }
         }
-
-        private void limparPedido(){
-
-            this.itensNoCarrinho.clear();
-            this.estaPago = false;
-        }
-
 }
