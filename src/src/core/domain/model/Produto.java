@@ -26,12 +26,6 @@ public abstract class Produto {
         return regraDePreco.calcularPrecoFinal(this.precoBase);
     }
 
-    public int getID() {return ID;}
     public String getNome() {return nome;}
-    public String getDescricao() {return descricao;}
-    public double getPrecoBase() {return precoBase;}
-    public boolean isDisponivel() {return disponivel;}
     public void setQuantidadeEstoque(int quantidadeEstoque) {this.quantidadeEstoque = quantidadeEstoque;}
-    public int getQuantidadeEstoque() {return quantidadeEstoque;}
-    public void setDisponivel(boolean disponivel) {this.disponivel = disponivel;}
 }

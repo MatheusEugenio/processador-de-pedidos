@@ -1,7 +1,7 @@
 package infra.controller;
 
 import core.domain.model.ItemPedido;
-import core.domain.model.Pedido;
+import core.domain.services.Pedido;
 
 public class PedidoController {
 
