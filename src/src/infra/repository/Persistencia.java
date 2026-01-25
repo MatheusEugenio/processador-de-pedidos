@@ -15,7 +15,7 @@ public class Persistencia {
     private String caminho = "infra/repository/arqPedido";
     private File arqPedido = new File(caminho);
 
-    public void registrarItemNoLogDePedidos(Pedido pedido, ItemPedido item) throws IOException {
+    public void registrarItemNoLogDePedidos(Pedido pedido, ItemPedido item){
 
         try(BufferedWriter escritor = new BufferedWriter(new FileWriter(caminho))){
             if (pedido == null || item == null){
