@@ -1,7 +1,6 @@
-package core.domain.services;
+package core.domain.model;
 
-import core.domain.model.Cliente;
-import core.domain.model.ItemPedido;
+import core.domain.services.EmailNotificador;
 import core.domain.usecases.BuscaDeItemEmPedido;
 import core.domain.interfaces.IPagamento;
 import core.domain.usecases.CalculadoraDeFrete;
@@ -15,10 +14,14 @@ import java.util.Optional;
 
 public class Pedido {
 
+        private static int contador = 1;
+
+
         private Cliente cliente;
         private LocalDate dataDeCompra; // revisar pois não está sendo usado
         private List<ItemPedido> itensNoCarrinho;
         private boolean estaPago;
+        private int ID;
         private StatusDoPedido staus;
 
         public Pedido(Cliente comprador){
@@ -26,8 +29,11 @@ public class Pedido {
             this.itensNoCarrinho = new ArrayList<>();
             this.dataDeCompra = LocalDate.now();
             this.estaPago = false;
+            this.ID = contador++;
         }
 
+        public int getID() {return ID;}
+        public Cliente getCliente() {return cliente;}
         public StatusDoPedido getStaus() {return staus;}
         public void setStaus(StatusDoPedido staus) {this.staus = staus;}
         public List<ItemPedido> getItensNoCarrinho() {return this.itensNoCarrinho;}
@@ -35,7 +41,7 @@ public class Pedido {
         private double calcularValorTotalDoPedido(){
 
             double valorTotalDosItens =  itensNoCarrinho.stream()
-                    .mapToDouble(item -> item.getQuantidade() * item.getPrecoUnitario())
+                    .mapToDouble(item -> item.getProduto().getQuantidadeEstoque() * item.getPrecoUnitario())
                     .sum();
 
             return valorTotalDosItens + CalculadoraDeFrete.calcularFreteTotal(this.itensNoCarrinho);
@@ -97,6 +103,8 @@ public class Pedido {
             if (pago){
                 this.estaPago = true;
                 System.out.println("Pedido pago com sucesso!");
+                EmailNotificador emailNotificador = new EmailNotificador();
+                emailNotificador.notificar(this);
                 //enviar comando de email
             }else {
                 throw new RuntimeException("Erro ao pagar!");

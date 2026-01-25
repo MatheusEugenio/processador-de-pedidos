@@ -26,6 +26,7 @@ public abstract class Produto {
         return regraDePreco.calcularPrecoFinal(this.precoBase);
     }
 
+    public int getQuantidadeEstoque() {return this.quantidadeEstoque;}
     public String getNome() {return nome;}
     public void setQuantidadeEstoque(int quantidadeEstoque) {this.quantidadeEstoque = quantidadeEstoque;}
 }

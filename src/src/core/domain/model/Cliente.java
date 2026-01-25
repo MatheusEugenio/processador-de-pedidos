@@ -9,22 +9,23 @@ import java.util.List;
 public class Cliente {
 
     private String nome;
-    private String cpf;
+    private Long cpf;
     private LocalDate dataNascimento;
     private int idade;
-    private List<Produto> produtos;
+    private Double saldo;
 
-    public Cliente(String nome, String cpf, String dataNascimento) {
+    public Cliente(String nome, Long cpf,int idade, String dataNascimento, double depositoInicial) {
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = LocalDate.parse(dataNascimento, Dateformatter.formatter);
-        this.idade = 0;
-        this.produtos = new ArrayList<>();
+        this.idade = idade;
+        this.saldo = depositoInicial;
     }
 
-    public List<Produto> getProdutos() {return produtos;}
+    public Double getSaldo() {return saldo;}
+    public void setSaldo(Double saldo) {this.saldo = saldo;}
     public String getNome() {return nome;}
-    public String getCpf() {return cpf;}
+    public Long getCpf() {return cpf;}
     public LocalDate getDataNascimento() {return dataNascimento;}
     public int getIdade() {return idade;}
 }

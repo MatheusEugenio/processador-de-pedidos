@@ -18,7 +18,7 @@ public class CalculadoraDeFrete {
                     ITransportavel transportavel =  (ITransportavel) item.getProduto();
 
                     double freteUnitario = transportavel.calcularFrete();
-                    return freteUnitario * item.getQuantidade();
+                    return freteUnitario * item.getProduto().getQuantidadeEstoque();
 
                 })
                 .sum();

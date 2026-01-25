@@ -1,7 +1,7 @@
 package infra.controller;
 
 import core.domain.model.ItemPedido;
-import core.domain.services.Pedido;
+import core.domain.model.Pedido;
 import infra.util.StatusDoPedido;
 
 public class PedidoController {
