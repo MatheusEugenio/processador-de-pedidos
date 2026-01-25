@@ -15,7 +15,7 @@ public class Persistencia {
     private String caminho = "infra/repository/arqPedido";
     private File arqPedido = new File(caminho);
 
-    public void registrarItemNoLogDePedidos(Pedido pedido, ItemPedido item){
+    public void registrarItemNoLogDePedidos(Pedido pedido, ItemPedido item) throws IOException {
 
         try(BufferedWriter escritor = new BufferedWriter(new FileWriter(caminho))){
             if (pedido == null || item == null){
@@ -29,7 +29,7 @@ public class Persistencia {
         }
     }
 
-    public void removerItemNoLogDePedidos(Pedido pedido, ItemPedido item){
+    public void removerItemNoLogDePedidos(Pedido pedido, ItemPedido item) throws IOException {
 
             if (pedido == null || item == null) {
                 throw new NullPointerException("Erro ao remover produto: item ou pedido são nulos ou não existem!");
@@ -45,7 +45,7 @@ public class Persistencia {
             escreverNoLogDePedidos(pedido.getItensNoCarrinho());//recarregar e re-escrever os itens no pedido
     }
 
-    private void escreverNoLogDePedidos(List<ItemPedido> itens) {
+    private void escreverNoLogDePedidos(List<ItemPedido> itens) throws IOException {
         try (BufferedWriter escritor = new BufferedWriter(new FileWriter(caminho))) {
             if (itens == null || itens.isEmpty()){
                 throw new IllegalArgumentException(""); //rever o tipo dessa exceção
@@ -53,7 +53,7 @@ public class Persistencia {
 
 
         } catch (IOException e) {
-            e.getMessage();
+            throw new IOException("Erro na manipulação do arquivo: "+ e.getMessage());
         }
     }
 }

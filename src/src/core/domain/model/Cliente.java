@@ -3,8 +3,6 @@ package core.domain.model;
 import infra.util.Dateformatter;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Cliente {
 

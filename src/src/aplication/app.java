@@ -6,8 +6,6 @@ import core.domain.strategies.RegraEletronico;
 import core.domain.strategies.RegraLivros;
 import infra.controller.PagamentoController;
 import infra.controller.PedidoController;
-import infra.gateways.PagamentoCartao;
-import infra.gateways.PagamentoPix;
 import infra.util.MetodosDePagamentos;
 
 public class app {
