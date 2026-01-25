@@ -53,5 +53,4 @@ public class PedidoController {
         pedido.getItensNoCarrinho().clear();
         pedido.setStaus(StatusDoPedido.AGUARDANDO_PAGAMENTO);
     }
-
 }
