@@ -9,8 +9,10 @@ public class BuscaDeItemEmPedido {
 
     public static Optional<ItemPedido> buscaItemEmPedido(ItemPedido itemPedido, List<ItemPedido> produtoList){
         return produtoList.stream()
-                .filter(itemDaLista -> itemDaLista.getPrecoUnitario() == itemPedido.getPrecoUnitario()
-                        && itemDaLista.getProduto().getNome().equalsIgnoreCase(itemPedido.getProduto().getNome()))
+                .filter(item ->
+                        item.getPrecoUnitario() == itemPedido.getPrecoUnitario() &&
+                                item.getNomeDoProduto().equalsIgnoreCase(itemPedido.getNomeDoProduto())
+                )
                 .findFirst();
     }
 }

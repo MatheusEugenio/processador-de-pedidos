@@ -6,11 +6,12 @@ import core.domain.interfaces.IPagamento;
 public class PagamentoCartao implements IPagamento {
 
     @Override
-    public boolean processarPagamento(double valor) {
+    public boolean pagar(double valor) {
         if (valor <= 0) {
             return false;
         }
 
+        /*falta a regra de negócio de pagamento*/
         return true;
     }
 }

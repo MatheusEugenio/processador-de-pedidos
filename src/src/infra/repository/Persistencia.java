@@ -18,9 +18,6 @@ public class Persistencia {
     public void registrarItemNoLogDePedidos(Pedido pedido, ItemPedido item){
 
         try(BufferedWriter escritor = new BufferedWriter(new FileWriter(caminho))){
-            if (pedido == null || item == null){
-                throw new NullPointerException("Erro ao registrar produto: item ou pedido são nulos ou não existem!");
-            }
 
 
 
@@ -31,25 +28,22 @@ public class Persistencia {
 
     public void removerItemNoLogDePedidos(Pedido pedido, ItemPedido item) throws IOException {
 
-            if (pedido == null || item == null) {
-                throw new NullPointerException("Erro ao remover produto: item ou pedido são nulos ou não existem!");
-            }
-
             boolean estaPresenteNoPedido = pedido.getItensNoCarrinho().contains(item);
-            if (estaPresenteNoPedido){
-                pedido.getItensNoCarrinho().remove(item);
-            }else {
+            if (!estaPresenteNoPedido){
                 throw new NoSuchElementException("Erro ao remover produto: o item não está no pedido, impossível remover!");
             }
 
+            pedido.getItensNoCarrinho().remove(item);
             escreverNoLogDePedidos(pedido.getItensNoCarrinho());//recarregar e re-escrever os itens no pedido
     }
 
     private void escreverNoLogDePedidos(List<ItemPedido> itens) throws IOException {
+        if (itens.isEmpty()){
+            throw new IllegalArgumentException("Erro: a lista de itens é nula!"); //rever o tipo dessa exceção
+        }
+
         try (BufferedWriter escritor = new BufferedWriter(new FileWriter(caminho))) {
-            if (itens == null || itens.isEmpty()){
-                throw new IllegalArgumentException(""); //rever o tipo dessa exceção
-            }
+
 
 
         } catch (IOException e) {

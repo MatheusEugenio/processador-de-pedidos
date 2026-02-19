@@ -1,5 +1,5 @@
 package core.domain.interfaces;
 
 public interface IPagamento {
-    boolean processarPagamento(double valor);
+    boolean pagar(double valor);
 }

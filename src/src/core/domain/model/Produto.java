@@ -5,15 +5,15 @@ import core.domain.interfaces.IRegradePreco;
 public abstract class Produto {
 
     protected int ID;
-    protected String nome;
+    protected String nomeDoProduto;
     protected String descricao;
     protected double precoBase;
     protected int quantidadeEstoque;
     protected boolean disponivel;
     protected IRegradePreco regraDePreco; //funciona como o tipo do produto
 
-    public Produto(String nome, String descricao, double precoBase, int quant, IRegradePreco regraDePreco) {
-        this.nome = nome;
+    public Produto(String nomeDoProduto, String descricao, double precoBase, int quant, IRegradePreco regraDePreco) {
+        this.nomeDoProduto = nomeDoProduto;
         this.descricao = descricao;
         this.precoBase = precoBase;
         this.quantidadeEstoque = quant;
@@ -25,8 +25,7 @@ public abstract class Produto {
     public double getPrecoFinal() {
         return regraDePreco.calcularPrecoFinal(this.precoBase);
     }
-
     public int getQuantidadeEstoque() {return this.quantidadeEstoque;}
-    public String getNome() {return nome;}
+    public String getNomeDoProduto() {return nomeDoProduto;}
     public void setQuantidadeEstoque(int quantidadeEstoque) {this.quantidadeEstoque = quantidadeEstoque;}
 }

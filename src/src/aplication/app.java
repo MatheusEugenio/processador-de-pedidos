@@ -2,6 +2,9 @@ package aplication;
 
 import core.domain.model.*;
 import core.domain.model.Pedido;
+import core.domain.model.user.Age;
+import core.domain.model.user.Cpf;
+import core.domain.model.user.Name;
 import core.domain.strategies.RegraEletronico;
 import core.domain.strategies.RegraLivros;
 import infra.controller.PagamentoController;
@@ -11,7 +14,7 @@ import infra.util.MetodosDePagamentos;
 public class app {
     public static void main(String[] args) {
         /// RECEBER O PEDIDO
-        Cliente junior = new Cliente("Junior Bala", 12345678910L, 40, "12/12/2000", 1000.0);
+        Cliente junior = new Cliente(new Name("Junior Bala"), new Cpf("12345678910"), new Age(40), "12/12/2000", 1000.0);
 
         RegraEletronico regraEletronico = new RegraEletronico();
         RegraLivros regraLivros = new RegraLivros();

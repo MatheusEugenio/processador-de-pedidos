@@ -1,18 +1,21 @@
 package core.domain.model;
 
+import core.domain.model.user.Age;
+import core.domain.model.user.Cpf;
+import core.domain.model.user.Name;
 import infra.util.Dateformatter;
 
 import java.time.LocalDate;
 
 public class Cliente {
 
-    private String nome;
-    private Long cpf;
+    private Name nome;
+    private Cpf cpf;
     private LocalDate dataNascimento;
-    private int idade;
+    private Age idade;
     private Double saldo;
 
-    public Cliente(String nome, Long cpf,int idade, String dataNascimento, double depositoInicial) {
+    public Cliente(Name nome, Cpf cpf, Age idade, String dataNascimento, double depositoInicial) {
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = LocalDate.parse(dataNascimento, Dateformatter.formatter);
@@ -20,10 +23,5 @@ public class Cliente {
         this.saldo = depositoInicial;
     }
 
-    public Double getSaldo() {return saldo;}
-    public void setSaldo(Double saldo) {this.saldo = saldo;}
-    public String getNome() {return nome;}
-    public Long getCpf() {return cpf;}
-    public LocalDate getDataNascimento() {return dataNascimento;}
-    public int getIdade() {return idade;}
+    public String getNome() {return nome.getNome();}
 }
