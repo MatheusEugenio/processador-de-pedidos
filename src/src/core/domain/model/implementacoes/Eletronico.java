@@ -1,6 +1,7 @@
-package core.domain.model;
+package core.domain.model.implementacoes;
 
 import core.domain.interfaces.IRegradePreco;
+import core.domain.model.ProdutoFisico;
 
 public class Eletronico extends ProdutoFisico {
 
